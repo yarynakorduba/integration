@@ -61,6 +61,7 @@ float answer;
 int m = stoi(config.find("thread")->second);
 float a1i[] = {1, 2, 3, 4};
 float a2i[] = {1, 2, 3, 4};
+float ci[] = {1, 7, 6, 1, 7};
 double xstart = atof(config.find("start_x")->second.c_str());
 double max_x = atof(config.find("max_x")->second.c_str());
 double max_y = atof(config.find("max_y")->second.c_str());
@@ -81,15 +82,12 @@ float valueAtPoint(float x_1, float x_2, float c_i[], float a_1i[], float a_2i[]
 }
 
 void integral(float x_1from, float x_1to, float x_2from, float x_2to, float prec) {
-    //   float sum = 0;
     float x1_start = x_1from;
-    // double step = (b - a) / n;  // width of each small rectangle
-    float area = 0;  // signed area
+    float area = 0;  
     while(x1_start <= x_1to) {
         float x2_start = x_2from;
 
         while(x2_start <= x_2to) {
-            //area += f(a + (i + 0.5) * step) * step; // sum up each small rectangle
             area += valueAtPoint((2 * x1_start + prec) / 2, (2 * x2_start + prec) / 2, ci, a1i, a2i, m) * prec * prec;
             cout << "area " << area << endl;
 
